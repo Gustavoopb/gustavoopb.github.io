@@ -1,0 +1,183 @@
+html{
+    background-image: url("../img/banner.jpeg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #e5e5e5;
+}
+
+html, body{
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+footer{
+    height: 35vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 3rem;
+}
+
+#about{
+    background-color: #e5e5e5;
+}
+
+.title{
+    margin: 0 0 0 1rem;
+}
+p{
+    margin: auto;
+}
+
+section{
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.banner{
+    background-color: transparent;
+}
+
+img{
+    border-radius: 50%;
+    width: 6em;
+    height: 6em;
+    box-shadow: 0 0 0.8em 0 #000;
+}
+
+.inner{
+    background-color: #e5e5e5;
+    border-radius: 1rem;
+    padding: 2rem 0;
+    box-shadow: inset 0 0 0.4em 0 #000;
+}
+
+.resume{
+    padding: 1ch 1em;
+}
+
+.personal{
+    text-align: center;
+}
+
+.share-dialog {
+    background-color: #9b4dca;
+    border-radius: .4rem;
+    color: #fff;
+    display: block;
+    height: 2.2rem;
+    text-align: center;
+    width: 5rem;
+    margin: 0.5rem;
+}
+
+nav{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    min-height: 2.5em;
+    background-color: rgba(229, 229, 229, 0.7);
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.nav-a{
+    margin: 0 1rem;
+}
+
+.divider {
+    align-self: center;
+    margin: 1ch 0;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    width: 80%;
+    flex: 0;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-center{
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.flex-direction{
+    flex-direction: column;
+}
+
+.flex-end{
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.flex-start{
+    justify-content: space-around;
+    align-items: baseline;
+}
+
+.flex-space{
+    flex: 0;
+}
+
+.flex-1{
+    flex: 1;
+}
+.flex-2{
+    flex: 2;
+}
+.flex-3{
+    flex: 3;
+}
+.flex-4{
+    flex: 4;
+}
+.flex-5{
+    flex: 5;
+}
+.flex-6{
+    flex: 6;
+}
+.flex-7{
+    flex: 7;
+}
+.flex-8{
+    flex: 8;
+}
+.flex-9{
+    flex: 9;
+}
+
+@media (min-width: 40.0rem) { 
+    .flex-space{
+        flex: 1;
+    }
+    .flex-direction{
+        flex-direction: row;
+    }
+
+    .divider {
+        align-self: initial;
+    }
+}
+
+/* Larger than tablet screen */
+@media (min-width: 80.0rem) { 
+    .flex-space{
+        flex: 2;
+    }
+}
+
+/* Larger than desktop screen */
+@media (min-width: 120.0rem) {
+    .flex-space{
+        flex: 2;
+    }
+}

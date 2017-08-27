@@ -1,0 +1,12 @@
+{
+  "name": "profile",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {},
+  "author": "Gustavo Barbosa",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^3.5.5"
+  }
+}
