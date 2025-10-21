@@ -304,10 +304,90 @@ body {
         right: 1rem;
         padding: 0.5rem 1rem;
     }
+    
+    /* CV Navigation responsive */
+    .cv-nav-container {
+        padding: 0 1rem;
+    }
+    
+    .cv-nav-links {
+        gap: 1rem;
+    }
+    
+    .cv-nav-link {
+        font-size: 0.85rem;
+    }
+}
+
+/* CV Navigation Header */
+.cv-nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 1000;
+    padding: 0.75rem 0;
+}
+
+.cv-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cv-nav-brand a {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+    text-decoration: none;
+}
+
+.cv-nav-brand a:hover {
+    color: #2563eb;
+}
+
+.cv-nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.cv-nav-link {
+    color: #6b7280;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.cv-nav-link:hover {
+    color: #2563eb;
+}
+
+.cv-nav-link.active {
+    color: #2563eb;
+}
+
+/* Add top margin to body when nav is present */
+body.has-nav {
+    margin-top: 60px;
 }
 
 /* Print Styles */
 @media print {
+    .cv-nav-header {
+        display: none !important;
+    }
+    
+    body.has-nav {
+        margin-top: 0 !important;
+    }
+    
     .print-btn {
         display: none;
     }
