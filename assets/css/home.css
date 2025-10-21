@@ -100,10 +100,40 @@ body {
     align-items: center;
     justify-content: center;
     padding: 4rem 2rem;
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: calc(100% + 100px);
+    height: calc(100% + 100px);
+    background-image: url('/assets/img/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: transform;
+    z-index: 0;
+    transform: translate3d(0, 0, 0);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(248, 250, 252, 0.6);
+    backdrop-filter: blur(0.5px);
+    z-index: 1;
 }
 
 .hero-content {
+    position: relative;
+    z-index: 2;
     max-width: 800px;
     text-align: center;
 }
@@ -246,13 +276,43 @@ body {
 /* Contact Section */
 .contact {
     padding: 6rem 2rem;
-    background: #f8fafc;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-bg {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: calc(100% + 100px);
+    height: calc(100% + 100px);
+    background-image: url('/assets/img/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: transform;
+    z-index: 0;
+    transform: translate3d(0, 0, 0);
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(248, 250, 252, 0.65);
+    backdrop-filter: blur(1px);
+    z-index: 1;
 }
 
 .contact-content {
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .contact-text {
@@ -408,5 +468,25 @@ body {
     
     .nav-link {
         font-size: 0.9rem;
+    }
+}
+
+/* Enhanced parallax effect for larger screens */
+@media (min-width: 1024px) {
+    .hero::before {
+        background: rgba(248, 250, 252, 0.5);
+    }
+    
+    .contact::before {
+        background: rgba(248, 250, 252, 0.6);
+    }
+    
+    /* Better text contrast on larger screens */
+    .hero-title {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .section-title {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 }
