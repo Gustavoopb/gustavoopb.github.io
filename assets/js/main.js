@@ -130,8 +130,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    function initCopyRight() {
+        const currentYear = new Date().getFullYear();
+        const copyRightElement = document.querySelector('#footer-year');
+        if (copyRightElement) {
+            copyRightElement.textContent = `${currentYear}`;
+        }
+    }
+    
     // Initialize the background rotation system
     initBackgroundRotation();
+    initCopyRight();
     
     // Expose function for manual testing (development only)
     if (typeof window !== 'undefined') {

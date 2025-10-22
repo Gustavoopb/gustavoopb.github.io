@@ -378,8 +378,18 @@ body.has-nav {
     margin-top: 60px;
 }
 
+/* Print Visibility Classes */
+.print-only {
+    display: none !important;
+}
+
 /* Print Styles */
 @media print {
+    /* Show print-only elements */
+    .print-only {
+        display: block !important;
+    }
+
     .cv-nav-header {
         display: none !important;
     }
