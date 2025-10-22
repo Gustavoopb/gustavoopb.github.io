@@ -8,15 +8,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if elements exist
     if (!heroBackground || !contactBackground || !heroSection || !contactSection) return;
     
-    // Disable parallax on mobile devices for performance
-    const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    // Check if device prefers reduced motion (accessibility)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
-    if (isMobile) {
-        // Fallback for mobile - center the background images
+    if (prefersReducedMotion) {
+        // Respect user's accessibility preferences
         heroBackground.style.transform = 'translate3d(0, 0, 0)';
         contactBackground.style.transform = 'translate3d(0, 0, 0)';
         return;
     }
+    
+    // Detect mobile for optimized parallax settings
+    const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     // Cache section positions for better performance
     let heroTop, heroHeight, contactTop, contactHeight;
@@ -37,17 +40,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrolled = window.pageYOffset;
         const windowHeight = window.innerHeight;
         
+        // Adjust parallax intensity based on device type
+        const heroIntensity = isMobile ? 75 : 150; // Reduced intensity on mobile
+        const contactIntensity = isMobile ? 60 : 120; // Reduced intensity on mobile
+        
         // Hero section parallax - only when in viewport
         if (scrolled + windowHeight > heroTop && scrolled < heroTop + heroHeight) {
             const heroProgress = (scrolled - heroTop + windowHeight) / (heroHeight + windowHeight);
-            const heroParallax = (heroProgress - 0.5) * 150; // Increased movement range for more noticeable effect
+            const heroParallax = (heroProgress - 0.5) * heroIntensity;
             heroBackground.style.transform = `translate3d(0, ${heroParallax}px, 0)`;
         }
         
         // Contact section parallax - only when in viewport
         if (scrolled + windowHeight > contactTop && scrolled < contactTop + contactHeight) {
             const contactProgress = (scrolled - contactTop + windowHeight) / (contactHeight + windowHeight);
-            const contactParallax = (contactProgress - 0.5) * 120; // Increased movement range
+            const contactParallax = (contactProgress - 0.5) * contactIntensity;
             contactBackground.style.transform = `translate3d(0, ${contactParallax}px, 0)`;
         }
         
@@ -79,14 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function() {
-            const newIsMobile = window.innerWidth <= 768;
-            if (newIsMobile) {
-                heroBackground.style.transform = 'translate3d(0, 0, 0)';
-                contactBackground.style.transform = 'translate3d(0, 0, 0)';
-            } else {
-                calculatePositions();
-                updateParallax();
-            }
+            // Recalculate positions and update parallax
+            calculatePositions();
+            updateParallax();
         }, 250);
     });
     
