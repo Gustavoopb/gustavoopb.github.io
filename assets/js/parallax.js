@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroSection = document.querySelector('.hero');
     const contactSection = document.querySelector('.contact');
     
-    // Check if elements exist
-    if (!heroBackground || !contactBackground || !heroSection || !contactSection) return;
+    // Check if at least hero elements exist
+    if (!heroBackground || !heroSection) return;
     
     // Check if device prefers reduced motion (accessibility)
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (prefersReducedMotion) {
         // Respect user's accessibility preferences
         heroBackground.style.transform = 'translate3d(0, 0, 0)';
-        contactBackground.style.transform = 'translate3d(0, 0, 0)';
+        if (contactBackground) {
+            contactBackground.style.transform = 'translate3d(0, 0, 0)';
+        }
         return;
     }
     
@@ -27,13 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function calculatePositions() {
         const heroRect = heroSection.getBoundingClientRect();
-        const contactRect = contactSection.getBoundingClientRect();
         const scrolled = window.pageYOffset;
         
         heroTop = heroRect.top + scrolled;
         heroHeight = heroRect.height;
-        contactTop = contactRect.top + scrolled;
-        contactHeight = contactRect.height;
+        
+        if (contactSection) {
+            const contactRect = contactSection.getBoundingClientRect();
+            contactTop = contactRect.top + scrolled;
+            contactHeight = contactRect.height;
+        }
     }
     
     function updateParallax() {
@@ -51,8 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
             heroBackground.style.transform = `translate3d(0, ${heroParallax}px, 0)`;
         }
         
-        // Contact section parallax - only when in viewport
-        if (scrolled + windowHeight > contactTop && scrolled < contactTop + contactHeight) {
+        // Contact section parallax - only when in viewport and exists
+        if (contactSection && contactBackground && scrolled + windowHeight > contactTop && scrolled < contactTop + contactHeight) {
             const contactProgress = (scrolled - contactTop + windowHeight) / (contactHeight + windowHeight);
             const contactParallax = (contactProgress - 0.5) * contactIntensity;
             contactBackground.style.transform = `translate3d(0, ${contactParallax}px, 0)`;
